@@ -1,0 +1,11 @@
+2019/09/16
+
+    crear un ususario github
+    usuario:migboi
+    correo:migboi@alu.iesserpis.org
+
+Recibes un corro de conformacion , crear un repositorio marcando Readme.
+gitignore:ViasualStudio (c#)
+https://github.com/migboi/ad
+
+clonar en mi home: git clone  https://github.com/migboi/ad.git 
