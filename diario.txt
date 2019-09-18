@@ -1,0 +1,27 @@
+2019/09/16
+
+    crear un ususario github
+    usuario:migboi
+    correo:migboi@alu.iesserpis.org
+  Contraseña: xxxxxxxx
+
+Crear repositorio:
+  Nombre: ad
+  Inicializar con README
+  .gitignore: VisualStudio (por c#)
+ Clonar en mi home:
+  git clone https://github.com/migboi/ad.git
+
+ Configuración local de git:
+  git config --global user.name migboi
+  git config --global user.email migboi@alu.iesserpis.org
+  git config --global push.default simple
+
+ Nuevo archivo:
+  git add diario.txt (o git add .)
+  git commit -m "diario.txt con detalles sobre github y git"
+  git push (para publicar nueva versión)
+
+ Otros comandos:
+  git log (muestra la lista de versiones)
+  git status 
