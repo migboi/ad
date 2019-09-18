@@ -12,6 +12,7 @@ Crear repositorio:
  Clonar en mi home:
   git clone https://github.com/migboi/ad.git
 
+***redordar estas simpre dentro de l carpeta***
  Configuración local de git:
   git config --global user.name migboi
   git config --global user.email migboi@alu.iesserpis.org
@@ -25,3 +26,9 @@ Crear repositorio:
  Otros comandos:
   git log (muestra la lista de versiones)
   git status 
+
+  volver a una version anterior 
+    git checkout "numero de huella"
+
+  volver a version mas reciente 
+    git checkout master
