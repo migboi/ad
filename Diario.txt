@@ -32,3 +32,15 @@ Crear repositorio:
 
   volver a version mas reciente 
     git checkout master
+
+20/09/2019
+
+En virtualBox crear maquina viertual instalando ubuntu 16.04
+usuario/administrador/sistemas
+nombre pc:serpisdam
+
+23/09/2019
+instalar bitnami lamp 
+deactivamos las frameworks de diseño
+
+
