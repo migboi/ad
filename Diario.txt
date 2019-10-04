@@ -4,6 +4,7 @@
     usuario:migboi
     correo:migboi@alu.iesserpis.org
   Contraseña: xxxxxxxx
+     git clone https://github.com/luisvelasco1920/ad.git
 
 Crear repositorio:
   Nombre: ad
