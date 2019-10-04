@@ -19,6 +19,8 @@ Crear repositorio:
   git config --global user.email migboi@alu.iesserpis.org
   git config --global push.default simple
 
+  una git pull(para atualizar)
+
  Nuevo archivo:
   git add diario.txt (o git add .)
   git commit -m "diario.txt con detalles sobre github y git"
