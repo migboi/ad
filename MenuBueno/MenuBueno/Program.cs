@@ -16,14 +16,11 @@ namespace MenuBueno
             dbConnection = new MySqlConnection(
                  "server=localhost;database=dbprueba;user=root;password=sistemas;ssl-mode=none"
             );
-            dbConnection.Open();
+           
 
-            // InsertValue();
-
-            // ShowMetaInfo();
-
-            //dbConnection.Close();
+          
             menu();
+          
 
 
         }
@@ -31,6 +28,7 @@ namespace MenuBueno
 
         public static void menu() {
 
+            dbConnection.Open();
             int opcion = -1;
 
             while (opcion != 0)
@@ -58,20 +56,25 @@ namespace MenuBueno
                 {
 
                     case 1:
+                        InsertValue();
+                      
                         break;
 
                     case 2:
+                        delete();
                         break;
 
                     case 3:
                         break;
                     case 4:
+                        ShowMetaInfo();
+                      
                         break;
 
                     case 5:
 
                         ShowAll();
-
+                      
 
                         break;
 
@@ -91,7 +94,7 @@ namespace MenuBueno
 
 
 
-
+            dbConnection.Close();
 
 
         }
@@ -121,13 +124,45 @@ namespace MenuBueno
             string nombre = Console.ReadLine();
             dbCommand.CommandText = "insert into categoria (nombre) values (@nombre)";
 
-            //IDbDataParameter dbDataParameter = dbCommand.CreateParameter();
-            //dbDataParameter.ParameterName = "nombre";
-            //dbDataParameter.Value = nombre; //"cat. 33" 
-            //dbCommand.Parameters.Add(dbDataParameter);
+     
             DbCommandHelper.AddParameter(dbCommand, "nombre", nombre);
 
             dbCommand.ExecuteNonQuery();
+
+
+
+        }
+
+
+        public static void ShowMetaInfo()
+        {
+            IDbCommand dbCommand = dbConnection.CreateCommand();
+            dbCommand.CommandText = "select * from categoria";
+            IDataReader dataReader = dbCommand.ExecuteReader();
+
+            Console.WriteLine("FieldCount={0}", dataReader.FieldCount);
+            for (int index = 0; index < dataReader.FieldCount; index++)
+                Console.WriteLine("Field {0,3} = {1,-15} Type= {2}", index, dataReader.GetName(index),
+                  dataReader.GetFieldType(index));
+
+            dataReader.Close();
+        }
+
+        public static void delete()
+        {
+            IDbCommand dbCommand = dbConnection.CreateCommand();
+            Console.Write("id del elemento a eliminar");
+            var numero = Console.ReadLine();
+
+            dbCommand.CommandText = "delete from categoria where id=(@numero)";
+
+            DbCommandHelper.AddParameter(dbCommand, "numero", numero);
+
+            dbCommand.ExecuteNonQuery();
+
+
+
+
         }
 
 
