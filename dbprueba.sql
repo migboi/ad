@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 07-10-2019 a las 00:29:11
+-- Tiempo de generación: 11-10-2019 a las 00:50:09
 -- Versión del servidor: 8.0.17
 -- Versión de PHP: 7.3.9
 
@@ -58,9 +58,12 @@ CREATE TABLE `categoria` (
 --
 
 INSERT INTO `categoria` (`id`, `nombre`) VALUES
+(6, ''),
 (1, ' categoría 1'),
 (2, ' categoría 2'),
-(3, ' categoría 3');
+(3, ' categoría 3'),
+(4, 'hola'),
+(7, 'miguel');
 
 --
 -- Índices para tablas volcadas
@@ -94,7 +97,7 @@ ALTER TABLE `articulo`
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
