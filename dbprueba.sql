@@ -33,7 +33,7 @@ CREATE TABLE `articulo` (
   `nombre` varchar(50) NOT NULL,
   `categoria` bigint(20) UNSIGNED NOT NULL,
   `precio` decimal(10,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+);
 
 --
 -- Volcado de datos para la tabla `articulo`
