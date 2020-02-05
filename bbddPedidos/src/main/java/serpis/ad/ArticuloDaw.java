@@ -70,6 +70,10 @@ public class ArticuloDaw {
 			
 			System.out.println(mensaje);
 		}
+ 
+
+ 
+
 	 
 
  

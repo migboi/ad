@@ -3,6 +3,7 @@ package serpis.ad;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
@@ -11,12 +12,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import antlr.collections.List;
 
 @Entity
-@Table(name="Pedido")
+@Table(name="pedido")
+
 public class Pedidos {
 	
 	@Id
@@ -34,18 +36,24 @@ public class Pedidos {
 	
 	private double importe;
 	
+
+	@OneToMany(mappedBy = "pedido")
+	private List<Pedidolinea> pedidoLineas;
 	
-	private ArrayList<Pedidolinea> pedidoLineas = new ArrayList<Pedidolinea>();
 	
 	
 
-	public ArrayList<Pedidolinea> getPedidoLineas() {
+	public List<Pedidolinea> getPedidoLineas() {
 		return pedidoLineas;
 	}
 
-	public void setPedidoLineas(ArrayList<Pedidolinea> pedidoLineas) {
+
+
+	public void setPedidoLineas(List<Pedidolinea> pedidoLineas) {
 		this.pedidoLineas = pedidoLineas;
 	}
+
+	
 
 	public int getId() {
 		return id;
@@ -76,6 +84,13 @@ public class Pedidos {
 	}
 	public void setImporte(double importe) {
 		this.importe = importe;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "Pedidos [id=" + id + ", pedidoLineas=" + pedidoLineas + "]";
 	}
 	
 	

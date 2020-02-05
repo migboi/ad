@@ -1,5 +1,7 @@
 package serpis.ad;
 
+import java.util.ArrayList;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -8,7 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.ForeignKey;
 
-@Entity(name="Pedidolinea")
+@Entity()
 public class Pedidolinea {
 
 	@Id
@@ -16,8 +18,7 @@ public class Pedidolinea {
 	private int id;
 	
 	@ManyToOne
-	@JoinColumn(name = "Pedidos",
-			foreignKey = @ForeignKey(name = "id"))
+	@JoinColumn(name = "pedido")
 	private Pedidos pedido;
 	
 	
@@ -41,7 +42,10 @@ public class Pedidolinea {
 	
 	public Pedidolinea(Pedidos pedido) {
 		this.pedido = pedido;
+		if(pedido.getPedidoLineas() == null)
+			pedido.setPedidoLineas(new ArrayList<Pedidolinea>());
 		pedido.getPedidoLineas().add(this);
+		
 }
 	
 	public int getId() {
@@ -60,10 +64,10 @@ public class Pedidolinea {
 		return articulo;
 	}
 	public void setArticulo(Articulo articulo) {
-		precio = articulo.getPrecio();
-		unidades = unidades;
+		
 		this.articulo = articulo;
 	}
+	
 	public double getPrecio() {
 		return precio;
 	}
@@ -82,8 +86,14 @@ public class Pedidolinea {
 	
 	public void setImporte(double importe) {
 		
-		this.importe =unidades*precio;
+		this.importe =importe;
 	}
+
+	@Override
+	public String toString() {
+		return "Pedidolinea [id=" + id + ", importe=" + importe + "]";
+	}
+	
 	
 	
 	
