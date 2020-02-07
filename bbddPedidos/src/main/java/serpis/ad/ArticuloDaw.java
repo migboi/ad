@@ -73,6 +73,33 @@ public class ArticuloDaw {
  
 
  
+ private static void eliminar() {
+	 
+	 Scanner sc = new Scanner(System.in);
+	 System.out.println("Introduce id del articulo a eliminar");
+		
+		int id=Integer.parseInt(sc.nextLine());
+		
+		   EntityManager entityManager = ContainerEntitityManager.entityManagerFactory.createEntityManager();
+		   ArrayList<Articulo> articulos =  (ArrayList<Articulo>) entityManager.createQuery("from Articulo order by id", Articulo.class).getResultList();
+			entityManager.getTransaction().begin();
+			
+		String mensaje = null;
+		
+		for (Articulo articulo : articulos)
+			
+			if (articulo.getId() == id) {
+				
+		    	entityManager.remove(articulo);
+		    	entityManager.getTransaction().commit();
+		    	entityManager.close();
+				System.out.println("articulo eliminado");
+				break;
+			}
+		//System.out.println("No se puedo eliminar el pedido");
+	}
+ 
+ 
 
 	 
 
@@ -107,6 +134,7 @@ public class ArticuloDaw {
 				
 			
 			 case 2:
+				 eliminar();
 				 break;
 				 
 			 case 3:

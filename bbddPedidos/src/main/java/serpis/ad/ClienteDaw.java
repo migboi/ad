@@ -47,7 +47,7 @@ public class ClienteDaw {
 	 private static void buscar() {
 		 
 		 Scanner sc = new Scanner(System.in);
-		 System.out.println("Introduce id de la cliente a buscar");
+		 System.out.println("Introduce id del cliente a buscar");
 			
 			int id=Integer.parseInt(sc.nextLine());
 			
@@ -65,15 +65,31 @@ public class ClienteDaw {
 			System.out.println(mensaje);
 		}
 	 
-
-		/*private static ArrayList<Cliente> getAll() {
+	 private static void eliminar() {
+		 
+		 Scanner sc = new Scanner(System.in);
+		 System.out.println("Introduce id del cliente a eliminar");
 			
-		    EntityManager entityManager = ContainerEntitityManager.entityManagerFactory.createEntityManager();
-		    ArrayList<Cliente> clientes =  (ArrayList<Cliente>) entityManager.createQuery("from Cliente order by id", 
-		     		Cliente.class).getResultList();
-		    entityManager.close();
-		    return (ArrayList<Cliente>) clientes; 
-		 }*/
+			int id=Integer.parseInt(sc.nextLine());
+			
+			   EntityManager entityManager = ContainerEntitityManager.entityManagerFactory.createEntityManager();
+			   ArrayList<Cliente> clientes =  (ArrayList<Cliente>) entityManager.createQuery("from Cliente order by id", Cliente.class).getResultList();
+				entityManager.getTransaction().begin();
+				
+			String mensaje = null;
+			
+			for (Cliente cliente : clientes)
+				
+				if (cliente.getId() == id) {
+					
+			    	entityManager.remove(cliente);
+			    	entityManager.getTransaction().commit();
+			    	entityManager.close();
+					System.out.println("Pedido eliminado");
+					break;
+				}
+			//System.out.println("No se puedo eliminar el pedido");
+		}
 
 	public static void clie() {
 		Scanner sc = new Scanner(System.in);
@@ -105,7 +121,7 @@ public class ClienteDaw {
 					break;
 					
 				 case 2:
-			
+					 eliminar();
 					 
 					 break;
 					 

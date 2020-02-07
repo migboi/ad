@@ -61,6 +61,34 @@ public class categoriaDaw {
 			System.out.println(mensaje);
 		}
  
+ 
+ 
+ private static void eliminar() {
+	 
+	 Scanner sc = new Scanner(System.in);
+	 System.out.println("Introduce id de la categoria  a eliminar");
+		
+		int id=Integer.parseInt(sc.nextLine());
+		
+		   EntityManager entityManager = ContainerEntitityManager.entityManagerFactory.createEntityManager();
+		   ArrayList<Categoria> categorias =  (ArrayList<Categoria>) entityManager.createQuery("from Categoria order by id", Categoria.class).getResultList();
+			entityManager.getTransaction().begin();
+			
+		String mensaje = null;
+		
+		for (Categoria categoria : categorias)
+			
+			if (categoria.getId() == id) {
+				
+		    	entityManager.remove(categoria);
+		    	entityManager.getTransaction().commit();
+		    	entityManager.close();
+				System.out.println("articulo eliminado");
+				break;
+			}
+		//System.out.println("No se puedo eliminar el pedido");
+	}
+ 
 	public static void cat() {
 		Scanner sc = new Scanner(System.in);
 		
@@ -92,6 +120,7 @@ public class categoriaDaw {
 				
 			
 			 case 2:
+				 eliminar();
 				 break;
 				 
 			 case 3:

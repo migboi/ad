@@ -21,7 +21,7 @@ public class pedidoDaw {
 		entityManager.getTransaction().begin();
 	
 		
-		Pedidos pedido=new Pedidos();
+		Pedido pedido=new Pedido();
 		Pedidolinea pedidolinea=new Pedidolinea(pedido);
 		pedido.setCliente(buscarCliente());
 		pedido.setFecha(LocalDateTime.now());
@@ -51,12 +51,11 @@ public class pedidoDaw {
 		System.out.println(pedido);
 		 //entityManager.persist(pedidolinea);
 		 entityManager.persist(pedido);
-	
-		
-	
+		 for(Pedidolinea pl: pedido.getPedidoLineas())
+			 entityManager.persist(pl);
 		 entityManager.getTransaction().commit();
-		 entityManager.close();
-		 entityManagerFactory.close();
+		 /*entityManager.close();
+		 entityManagerFactory.close();*/
 		
 	}
 	
@@ -114,9 +113,9 @@ public class pedidoDaw {
 	 public static void showAll() {
 		 
 		   EntityManager entityManager = ContainerEntitityManager.entityManagerFactory.createEntityManager();
-		   ArrayList<Pedidos> pedidos =  (ArrayList<Pedidos>) entityManager.createQuery("from Pedidos order by id", Pedidos.class).getResultList();
+		   ArrayList<Pedido> pedidos =  (ArrayList<Pedido>) entityManager.createQuery("from Pedidos order by id", Pedido.class).getResultList();
 		   String mensaje = null;
-	  	for (Pedidos pedido : pedidos) {
+	  	for (Pedido pedido : pedidos) {
 	  		mensaje="Nombre: "+pedido.getCliente().getNombre()+",Id: "+pedido.getId()+",Importe: "+pedido.getImporte()+", fecha: "+pedido.getFecha();
 	  		System.out.println(mensaje);
 	  	}
@@ -128,16 +127,16 @@ public class pedidoDaw {
  private static void buscar() {
 		 
 		 Scanner sc = new Scanner(System.in);
-		 System.out.println("Introduce id del pedido a buscar");
+		 System.out.println("Introduce id del pedido a eliminar");
 			
 			int id=Integer.parseInt(sc.nextLine());
 			
 			   EntityManager entityManager = ContainerEntitityManager.entityManagerFactory.createEntityManager();
-			   ArrayList<Pedidos> pedidos =  (ArrayList<Pedidos>) entityManager.createQuery("from Pedidos order by id", Pedidos.class).getResultList();
+			   ArrayList<Pedido> pedidos =  (ArrayList<Pedido>) entityManager.createQuery("from Pedidos order by id", Pedido.class).getResultList();
 			  entityManager.close();
 			String mensaje = null;
 			
-			for (Pedidos pedido : pedidos)
+			for (Pedido pedido : pedidos)
 				if (pedido.getId() == id) {
 					mensaje="Nombre: "+pedido.getCliente().getNombre()+",Id: "+pedido.getId()+",Importe: "+pedido.getImporte()+",Fecha: "+pedido.getFecha();
 					
@@ -145,6 +144,34 @@ public class pedidoDaw {
 			
 			System.out.println(mensaje);
 		}
+ 
+ 
+ private static void eliminar() {
+	 
+	 Scanner sc = new Scanner(System.in);
+	 System.out.println("Introduce id del pedido a eliminar");
+		
+		int id=Integer.parseInt(sc.nextLine());
+		
+		   EntityManager entityManager = ContainerEntitityManager.entityManagerFactory.createEntityManager();
+		   ArrayList<Pedido> pedidos =  (ArrayList<Pedido>) entityManager.createQuery("from Pedidos order by id", Pedido.class).getResultList();
+			entityManager.getTransaction().begin();
+			
+		String mensaje = null;
+		
+		for (Pedido pedido : pedidos)
+			
+			if (pedido.getId() == id) {
+				
+		    	entityManager.remove(pedido);
+		    	entityManager.getTransaction().commit();
+		    	entityManager.close();
+				System.out.println("Pedido eliminado");
+				break;
+			}
+		//System.out.println("No se puedo eliminar el pedido");
+	}
+ 
 	
 	
 	public static void pedido() {
@@ -178,7 +205,7 @@ public class pedidoDaw {
 					
 				 case 2:
 			
-					 
+					 eliminar();
 					 break;
 					 
 				 case 3:

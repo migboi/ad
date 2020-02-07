@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
@@ -19,11 +20,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name="pedido")
 
-public class Pedidos {
+public class Pedido {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	
 	private LocalDateTime fecha;
 	
@@ -32,13 +33,10 @@ public class Pedidos {
 	
 	private Cliente cliente;
 	
-	
-	
 	private double importe;
-	
 
-	@OneToMany(mappedBy = "pedido")
-	private List<Pedidolinea> pedidoLineas;
+	@OneToMany(mappedBy = "pedido",orphanRemoval =true)
+	private List<Pedidolinea> pedidoLineas = new ArrayList<Pedidolinea>();
 	
 	
 	
@@ -48,18 +46,15 @@ public class Pedidos {
 	}
 
 
-
 	public void setPedidoLineas(List<Pedidolinea> pedidoLineas) {
 		this.pedidoLineas = pedidoLineas;
 	}
 
-	
-
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 	
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	
