@@ -49,8 +49,9 @@ public class pedidoDaw {
 		//pedido.setPedidoLineas(pedidolinea);
 	
 		System.out.println(pedido);
-		//entityManager.persist(pedidolinea);
+		 //entityManager.persist(pedidolinea);
 		 entityManager.persist(pedido);
+	
 		
 	
 		 entityManager.getTransaction().commit();
