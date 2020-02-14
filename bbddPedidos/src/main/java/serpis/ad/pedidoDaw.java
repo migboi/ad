@@ -154,7 +154,7 @@ public class pedidoDaw {
 		int id=Integer.parseInt(sc.nextLine());
 		
 		   EntityManager entityManager = ContainerEntitityManager.entityManagerFactory.createEntityManager();
-		   ArrayList<Pedido> pedidos =  (ArrayList<Pedido>) entityManager.createQuery("from Pedidos order by id", Pedido.class).getResultList();
+		   ArrayList<Pedido> pedidos =  (ArrayList<Pedido>) entityManager.createQuery("from Pedido order by id", Pedido.class).getResultList();
 			entityManager.getTransaction().begin();
 			
 		String mensaje = null;
